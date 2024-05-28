@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
 
 export async function mongodb() {
-    return mongoose.connect('mongodb://localhost:27017');
+    return mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 }
