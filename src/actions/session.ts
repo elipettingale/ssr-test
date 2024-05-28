@@ -33,6 +33,6 @@ export async function login(data: FormData) {
 
     return {
         success: true,
-        user: user
+        user: JSON.parse(JSON.stringify(user))
     }
 }

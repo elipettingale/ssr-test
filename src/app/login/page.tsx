@@ -1,22 +1,25 @@
 "use client";
 
 import { login } from "@/actions/session";
+import useUser from "@/lib/hooks/useUser";
 import { useState } from "react";
 
 export default function Login() {
-    const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const [ user, setUser ] = useUser();
 
   const handleLogin = async (data: FormData) => {
     let result = await login(data);
 
     if (result.success === false) {
-        return setError(result.error ?? 'Something went wrong, please try again.');
+      return setError(
+        result.error ?? "Something went wrong, please try again."
+      );
     }
 
-    console.log(result.user);
-    // todo: put user in context
+    setUser(result.user);
     // todo: redirect to homepage
-  }
+  };
 
   return (
     <main>
