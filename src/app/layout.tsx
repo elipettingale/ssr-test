@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { mongoConnect } from "@/lib/database";
-import Entries from './../models/Entries';
+import { cookies } from "next/headers";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,21 +16,26 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await mongoConnect();
-  const entries = await Entries.find({});
+  const auth_token = cookies().get('auth_token')?.value ?? null;
+  // todo: get current user
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <h1>Layout</h1>
-        <div>
-          {entries.map((entry: any) => (
-            <p key={entry._id}>{entry.foo}</p>
-          ))}
-        </div>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
         {children}
       </body>
     </html>
   );
 }
-
