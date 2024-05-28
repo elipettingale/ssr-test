@@ -3,7 +3,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+import { getCurrentUser } from "@/actions/session";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [user, setUser] = useState(undefined);
+
+  const loadUser = async () => {
+    setUser(await getCurrentUser());
+  }
+
+  useEffect(() => {
+    loadUser();
+  }, [])
 
   return (
     <html lang="en">

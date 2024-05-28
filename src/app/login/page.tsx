@@ -2,11 +2,13 @@
 
 import { login } from "@/actions/session";
 import useUser from "@/lib/hooks/useUser";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
   const [error, setError] = useState("");
-  const [ user, setUser ] = useUser();
+  const [user, setUser] = useUser();
+  const router = useRouter();
 
   const handleLogin = async (data: FormData) => {
     let result = await login(data);
@@ -18,7 +20,7 @@ export default function Login() {
     }
 
     setUser(result.user);
-    // todo: redirect to homepage
+    router.push('/');
   };
 
   return (
