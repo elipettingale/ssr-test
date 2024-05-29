@@ -1,7 +1,7 @@
 'use server'
 
 import { mongodb } from "@/lib/database";
-import { generateAccessToken, getCurrentUserID, verifyPassword } from "@/lib/helpers";
+import { generateAccessToken, getCurrentUserID, verifyPassword } from "@/lib/auth";
 import Users from "@/models/Users";
 import { cookies } from 'next/headers'
 
@@ -45,6 +45,8 @@ export async function getCurrentUser() {
     }
 
     const id = await getCurrentUserID(auth_token.value);
+
+    await mongodb();
 
     const user = await Users.findOne({
         _id: id
