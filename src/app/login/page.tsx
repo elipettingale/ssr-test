@@ -1,13 +1,13 @@
 "use client";
 
 import { login } from "@/actions/session";
-import useUser from "@/lib/hooks/useUser";
+import useAuth from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
   const [error, setError] = useState("");
-  const [user, setUser] = useUser();
+  const [user, setUser] = useAuth();
   const router = useRouter();
 
   const handleLogin = async (data: FormData) => {

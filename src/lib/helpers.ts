@@ -20,9 +20,9 @@ export async function getCurrentUserID(auth_token: string) {
     jwt.verify(
       auth_token,
       process.env.JWT_SECRET,
-      (err: any, { id }: { id: string }) => {
+      (err: any, payload: any) => {
         if (!err) {
-          resolve(id);
+          resolve(payload.id);
         } else {
           reject();
         }

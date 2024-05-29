@@ -1,53 +1,48 @@
-'use client'
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { createContext, useEffect, useState } from 'react';
-import { getCurrentUser } from "@/actions/session";
+import AuthContext from "@/components/AuthContext";
+import { getCurrentUserID } from "@/lib/helpers";
+import { cookies } from 'next/headers'
+import Users from "@/models/Users";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const UserContext = createContext<{ user: any, setUser: any } | undefined>(undefined);
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [user, setUser] = useState(undefined);
+  const auth_token = cookies().get('auth_token')?.value;
 
-  const loadUser = async () => {
-    setUser(await getCurrentUser());
+  let user = undefined;
+
+  if (auth_token) {
+    user = await Users.findOne({
+      _id: await getCurrentUserID(auth_token as string)
+    });
+    user = JSON.parse(JSON.stringify(user));
   }
-
-  useEffect(() => {
-    loadUser();
-  }, [])
 
   return (
     <html lang="en">
-      <UserContext.Provider value={{ user: user, setUser: setUser }}>
-        <body className={inter.className}>
-          <header>
-            <nav>
-              <ul>
-                <li>
-                  <Link href="/">Home</Link>
-                </li>
-                <li>
-                  <Link href="/login">Login</Link>
-                </li>
-              </ul>
-            </nav>
-
-            {user && <div>
-              Me: {user.name}
-            </div>}
-          </header>
+      <body className={inter.className}>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/login">Login</Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <AuthContext initialUser={user}>
           {children}
-        </body>
-      </UserContext.Provider>
+        </AuthContext>
+      </body>
     </html>
   );
 }
