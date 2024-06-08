@@ -1,6 +1,6 @@
 'use server'
 
-import { mongodb } from "@/lib/database";
+import mongodb from "@/lib/mongodb";
 import { generateAccessToken, getCurrentUserID, verifyPassword } from "@/lib/auth";
 import Users from "@/models/Users";
 import { cookies } from 'next/headers'

@@ -38,6 +38,8 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --container-width: 1200px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -105,3 +107,11 @@ a {
     color-scheme: dark;
   }
 }
+
+main {
+  max-width: var(--container-width);
+  margin: auto;
+  padding: 3rem 1rem;
+}
+
+/* todo: tidy and remove guff, maybe add postcss and some mixins? */

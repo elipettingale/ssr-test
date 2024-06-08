@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Link from "next/link";
+import "@/styles/global.css";
 import AuthContext from "@/components/AuthContext";
 import { getCurrentUser } from "@/actions/session";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,20 +16,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/login">Login</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
+        <Header />
         <AuthContext initialUser={user}>
-          {children}
+          <main>
+            {children}
+          </main>
         </AuthContext>
       </body>
     </html>

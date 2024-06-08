@@ -24,7 +24,7 @@ export default function Login() {
   };
 
   return (
-    <main>
+    <>
       <h1>Login</h1>
       {error ?? <p>{error}</p>}
 
@@ -33,6 +33,6 @@ export default function Login() {
         <input type="password" name="password" />
         <button type="submit">Login</button>
       </form>
-    </main>
+    </>
   );
 }
