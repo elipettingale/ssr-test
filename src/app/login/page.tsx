@@ -1,6 +1,8 @@
 "use client";
 
 import { login } from "@/actions/session";
+import Button from "@/components/Button";
+import Input from "@/components/Form/Input";
 import useAuth from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -29,9 +31,9 @@ export default function Login() {
       {error ?? <p>{error}</p>}
 
       <form action={handleLogin}>
-        <input type="email" name="email" />
-        <input type="password" name="password" />
-        <button type="submit">Login</button>
+        <Input label="Email" name="email" type="email" />
+        <Input label="Password" name="password" type="password" />
+        <Button type="submit">Login</Button>
       </form>
     </>
   );
