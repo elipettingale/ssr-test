@@ -2,7 +2,8 @@
 
 import { login } from "@/actions/session";
 import Button from "@/components/Button";
-import Input from "@/components/Form/Input";
+import Card from "@/components/Card";
+import TextField from "@/components/Form/TextField";
 import useAuth from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -27,14 +28,16 @@ export default function Login() {
 
   return (
     <>
-      <h1>Login</h1>
-      {error ?? <p>{error}</p>}
+      <Card>
+        <h1>Login</h1>
+        {error ?? <p>{error}</p>}
 
-      <form action={handleLogin}>
-        <Input label="Email" name="email" type="email" />
-        <Input label="Password" name="password" type="password" />
-        <Button type="submit">Login</Button>
-      </form>
+        <form action={handleLogin}>
+          <TextField label="Email" name="email" type="email" />
+          <TextField label="Password" name="password" type="password" />
+          <Button type="submit">Login</Button>
+        </form>
+      </Card>
     </>
   );
 }
