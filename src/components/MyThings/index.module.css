@@ -1,0 +1,6 @@
+.Form {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 2rem 0;
+}

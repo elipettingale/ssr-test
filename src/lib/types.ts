@@ -1,5 +1,14 @@
+import { Key } from "react";
 
 export type User = {
-    name: String,
-    email: String
+    _id: Key;
+    name: String;
+    email: String;
+};
+
+export type Thing = {
+    _id: Key;
+    user_id: String;
+    name: String;
+    description: String;
 };

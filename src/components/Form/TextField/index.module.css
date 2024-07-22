@@ -1,4 +1,10 @@
 
+.Label {
+    font-size: 17px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
 .Input {
     display: block;
     padding: 0.5rem 0.75rem;
