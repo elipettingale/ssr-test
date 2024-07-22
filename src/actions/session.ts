@@ -30,11 +30,17 @@ export async function login(data: FormData) {
 
     const auth_token = generateAccessToken(user._id);
     cookies().set('auth_token', auth_token);
+    cookies().set('foo', 'bar');
 
     return {
         success: true,
         user: JSON.parse(JSON.stringify(user))
     }
+}
+
+export async function logout() {
+    cookies().delete('auth_token');
+    return true;
 }
 
 export async function getCurrentUser() {
@@ -57,4 +63,8 @@ export async function getCurrentUser() {
     }
 
     return null;
+}
+
+export async function userIsAuthenticated() {
+    return cookies().get('auth_token') !== undefined;
 }

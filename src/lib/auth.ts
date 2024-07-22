@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -33,7 +32,3 @@ export const generateAccessToken = (id: string) => {
     expiresIn: "1800s",
   });
 };
-
-export const userIsAuthenticated = () => {
-  return cookies().get('auth_token') !== null;
-}
