@@ -9,8 +9,8 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 export default function TextField({ label, name, ...rest }: Props) {
   return (
     <div className={styles.TextField}>
-        <label>{label}</label>
-        <input name={name} {...rest} />
+        <label className={styles.Label}>{label}</label>
+        <input className={styles.Input} name={name} {...rest} />
     </div>
   );
 }

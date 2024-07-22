@@ -1,0 +1,10 @@
+
+.Title {
+    margin-bottom: 1rem;
+}
+
+.Form {
+    display: grid;
+    gap: 0.75rem;
+    font-size: 20px;
+}

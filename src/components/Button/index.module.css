@@ -1,4 +1,10 @@
 
 .Button {
-    
+    background: #2d3749;
+    border: 1px solid #2d3749;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    width: fit-content;
+    color: white;
+    font-size: 20px;
 }

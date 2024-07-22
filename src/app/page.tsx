@@ -1,7 +1,8 @@
 import { getCurrentUser } from "@/actions/session";
+import { User } from "@/lib/types";
 
 export default async function Home() {
-  const user: any = await getCurrentUser();
+  const user: User = await getCurrentUser();
 
   return (
     <>
