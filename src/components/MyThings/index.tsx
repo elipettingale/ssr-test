@@ -12,6 +12,9 @@ interface Props {
 }
 
 export default function MyThings({ user }: Props) {
+    const nameInput = useRef<HTMLInputElement>();
+    const descriptionInput = useRef<HTMLInputElement>();
+
     const [things, setThings] = useState([]);
 
     useEffect(() => {
@@ -35,6 +38,9 @@ export default function MyThings({ user }: Props) {
             return alert('Error');
         }
 
+        nameInput.current!.value = '';
+        descriptionInput.current!.value = '';
+
         setThings((current) => {
             let clone = JSON.parse(JSON.stringify(current));
             clone.push(result.thing);
@@ -46,8 +52,8 @@ export default function MyThings({ user }: Props) {
     <div>
     <div>
         <form className={styles.Form} action={handleAddThing}>
-          <TextField label="Name" name="name" />
-          <TextField label="Description" name="description" />
+          <TextField ref={nameInput} label="Name" name="name" />
+          <TextField ref={descriptionInput} label="Description" name="description" />
           <Button type="submit">Add Thing</Button>
         </form>
       </div>

@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, forwardRef } from "react";
 import styles from "./index.module.css";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
@@ -6,11 +6,14 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
     name: string;
 }
 
-export default function TextField({ label, name, ...rest }: Props) {
+const TextField = forwardRef(function ({ label, name, ...rest }: Props, ref: any) {
   return (
     <div className={styles.TextField}>
         <label className={styles.Label}>{label}</label>
-        <input className={styles.Input} name={name} {...rest} />
+        <input ref={ref} className={styles.Input} name={name} {...rest} />
     </div>
   );
-}
+});
+
+export default TextField;
+
