@@ -8,3 +8,8 @@
     gap: 0.75rem;
     font-size: 20px;
 }
+
+.Error {
+    color: red;
+    margin-bottom: 1rem;
+}

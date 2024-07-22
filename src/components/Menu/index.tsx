@@ -10,15 +10,19 @@ export default async function Menu({}: Props) {
   return (
     <nav className={styles.Menu}>
       <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        {!auth && <li>
-          <Link href="/login">Login</Link>
-        </li>}
-        {auth && <li>
-          <Link href="/logout">Logout</Link>
-        </li>}
+        {!auth && (<>
+          <li>
+            <Link href="/">Login</Link>
+          </li>
+        </>)}
+        {auth && (<>
+          <li>
+            <Link href="/my-things">My Things</Link>
+          </li>
+          <li>
+            <Link href="/logout">Logout</Link>
+          </li>
+        </>)}
       </ul>
     </nav>
   );

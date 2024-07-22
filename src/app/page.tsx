@@ -1,13 +1,41 @@
-import { getCurrentUser } from "@/actions/session";
-import { User } from "@/lib/types";
+"use client";
 
-export default async function Home() {
-  const user: User = await getCurrentUser();
+import { login } from "@/actions/session";
+import Button from "@/components/Button";
+import Card from "@/components/Card";
+import TextField from "@/components/Form/TextField";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import styles from "./index.module.css";
+
+export default function Login() {
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  const handleLogin = async (data: FormData) => {
+    let result = await login(data);
+
+    if (result.success === false) {
+      return setError(
+        result.error ?? "Something went wrong, please try again."
+      );
+    }
+
+    router.push('/my-things');
+  };
 
   return (
     <>
-      <h1>Home</h1>
-      {user && <p>I am {user.name}</p>}
+      <Card>
+        <h1 className={styles.Title}>Login</h1>
+        {error && <p className={styles.Error}>{error}</p>}
+
+        <form action={handleLogin} className={styles.Form}>
+          <TextField label="Email" name="email" type="email" />
+          <TextField label="Password" name="password" type="password" />
+          <Button type="submit">Login</Button>
+        </form>
+      </Card>
     </>
   );
 }
