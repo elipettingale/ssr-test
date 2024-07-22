@@ -1,9 +1,7 @@
-'use client'
+import { getCurrentUser } from "@/actions/session";
 
-import useAuth from "@/lib/hooks/useAuth";
-
-export default function Home() {
-  const [user, setUser] = useAuth();
+export default async function Home() {
+  const user: any = await getCurrentUser();
 
   return (
     <>

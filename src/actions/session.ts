@@ -52,5 +52,9 @@ export async function getCurrentUser() {
         _id: id
     });
 
-    return JSON.parse(JSON.stringify(user));
+    if (user) {
+        return JSON.parse(JSON.stringify(user));
+    }
+
+    return null;
 }

@@ -4,13 +4,11 @@ import { login } from "@/actions/session";
 import Button from "@/components/Button";
 import Card from "@/components/Card";
 import TextField from "@/components/Form/TextField";
-import useAuth from "@/lib/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Login() {
   const [error, setError] = useState("");
-  const [user, setUser] = useAuth();
   const router = useRouter();
 
   const handleLogin = async (data: FormData) => {
@@ -22,7 +20,6 @@ export default function Login() {
       );
     }
 
-    setUser(result.user);
     router.push('/');
   };
 
